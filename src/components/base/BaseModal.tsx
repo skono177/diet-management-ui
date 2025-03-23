@@ -10,30 +10,19 @@ interface BaseModalProps<T> {
   modalTitle: string;
   modalDescription: string;
   open: boolean;
-  closeButtonName: string;
-  onCloseClick?: () => void;
-  customButtonName?: string;
-  onCustomClick?: (custopProp: T) => void;
+  negativeButtonName?: string;
+  onNegativeButtonClick?: () => void;
+  positiveButtonName?: string;
+  onPositiveButtonClick?: (custopProp: T) => void;
   customProp: T;
 }
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  boxShadow: 24,
-  p: 4,
-};
 
 export default function BaseModal<T>({
   modalTitle,
   modalDescription,
   open,
-  closeButtonName,
-  onCloseClick,
+  negativeButtonName,
+  onNegativeButtonClick,
   ...customButton
 }: BaseModalProps<T>) {
   return (
@@ -42,7 +31,7 @@ export default function BaseModal<T>({
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={open}
-        onClose={onCloseClick}
+        onClose={onNegativeButtonClick}
         closeAfterTransition
         slots={{ backdrop: Backdrop }}
         slotProps={{
@@ -53,7 +42,7 @@ export default function BaseModal<T>({
       >
         <div>
           <Fade in={open}>
-            <Box sx={style}>
+            <Box className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-max bg-white shadow-lg p-4 rounded-lg">
               <Typography
                 id="transition-modal-title"
                 variant="h6"
@@ -61,25 +50,31 @@ export default function BaseModal<T>({
               >
                 {modalTitle}
               </Typography>
-              <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+              <Typography
+                id="transition-modal-description"
+                sx={{ mt: 2 }}
+                className="whitespace-pre-line"
+              >
                 {modalDescription}
               </Typography>
-              <div className="flex p-4">
-                {customButton.customButtonName && (
+              <div className="flex justify-center p-4">
+                {customButton.positiveButtonName && (
                   <BaseButton
-                    className="m-2"
-                    name={customButton.customButtonName}
+                    className="m-2 w-max"
+                    name={customButton.positiveButtonName}
                     variant="contained"
                     onClick={() =>
-                      customButton.onCustomClick?.(customButton.customProp)
+                      customButton.onPositiveButtonClick?.(
+                        customButton.customProp
+                      )
                     }
                   ></BaseButton>
                 )}
                 <BaseButton
-                  className="m-2"
-                  name={closeButtonName}
+                  className="m-2 w-max"
+                  name={negativeButtonName}
                   variant="contained"
-                  onClick={onCloseClick}
+                  onClick={onNegativeButtonClick}
                 ></BaseButton>
               </div>
             </Box>
