@@ -20,12 +20,12 @@ export default function MealDetailModal({
       modalTitle="食事情報"
       modalDescription="食事の詳細情報です。"
       open={open}
-      closeButtonName="閉じる"
-      onCloseClick={onCloseClick}
-      customButtonName={
+      negativeButtonName="閉じる"
+      onNegativeButtonClick={onCloseClick}
+      positiveButtonName={
         onAddMealClick ? "選択した登録済みの食事を追加" : undefined
       }
-      onCustomClick={onAddMealClick}
+      onPositiveButtonClick={onAddMealClick}
       customProp={mealData}
     />
   );

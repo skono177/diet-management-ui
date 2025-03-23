@@ -20,10 +20,10 @@ export default function MenuDetailModal({
       modalTitle="メニュー情報"
       modalDescription="メニューの詳細情報です。"
       open={open}
-      closeButtonName="閉じる"
-      onCloseClick={onCloseClick}
-      customButtonName="選択したメニューを追加"
-      onCustomClick={onAddMenuClick}
+      negativeButtonName="閉じる"
+      onNegativeButtonClick={onCloseClick}
+      positiveButtonName="選択したメニューを追加"
+      onPositiveButtonClick={onAddMenuClick}
       customProp={menuData}
     />
   );

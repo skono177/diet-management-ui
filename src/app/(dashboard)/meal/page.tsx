@@ -1,5 +1,6 @@
 "use client";
 
+import BaseButton from "@/components/base/BaseButton";
 import MealDetailModal from "@/components/meal/list/detail/MealDetailModal";
 import MealTable, { MealData } from "@/components/meal/list/MealTable";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -57,6 +58,14 @@ export default function MealList() {
         mealData={mealData}
         onMealElementClick={handleMealDetail}
       ></MealTable>
+      {isSelect && (
+        <BaseButton
+          className="m-[10px_0px_10px_0px]"
+          name="戻る"
+          variant="contained"
+          onClick={handleBackScreen}
+        ></BaseButton>
+      )}
       {selectedMeal && (
         <MealDetailModal
           open={true}

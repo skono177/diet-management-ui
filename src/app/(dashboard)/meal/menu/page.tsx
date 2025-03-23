@@ -20,7 +20,6 @@ const menuDataList: MenuData[] = [
 
 export default function MealMenuSearch() {
   const [selectedMenu, setSelectedMenu] = useState<MenuData | null>(null);
-  const [open, setOpen] = useState(false);
   const router = useRouter();
 
   const handleBackScreen = () => {
@@ -29,14 +28,13 @@ export default function MealMenuSearch() {
 
   const handleMenuDetail = (menuData: MenuData) => {
     setSelectedMenu(menuData);
-    setOpen(true);
   };
 
   const handleAddMenu = (menuData: MenuData) => {
-    router.replace("/previousPage");
+    router.replace("/meal/register");
   };
 
-  const handleCloseModal = () => setOpen(false);
+  const handleCloseModal = () => setSelectedMenu(null);
 
   return (
     <div>
@@ -51,9 +49,9 @@ export default function MealMenuSearch() {
         variant="contained"
         onClick={handleBackScreen}
       ></BaseButton>
-      {open && selectedMenu && (
+      {selectedMenu && (
         <MenuDetailModal
-          open={open}
+          open={true}
           menuData={selectedMenu}
           onAddMenuClick={handleAddMenu}
           onCloseClick={handleCloseModal}
