@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* サイドメニュー追加分抜粋 */
+.layout {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1160px; /* コンテナの最大幅を指定 */
+  min-height: max-content;
+  margin: 0 auto; /* コンテンツを中央揃え */
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
